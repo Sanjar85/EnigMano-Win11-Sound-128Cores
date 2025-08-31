@@ -1,0 +1,22 @@
+name: "⚡ EnigMano Win11 + 128 Cores Deployment"
+
+on:
+  workflow_dispatch:
+    inputs:
+      INSTANCE:
+        description: "Instance number to deploy (e.g., 1, 2, 3...)"
+        required: true
+        default: "1"
+
+jobs:
+  deploy-enigmano:
+    name: "🚀 Deploy EnigMano Instance ${{ github.event.inputs.INSTANCE }}"
+    runs-on: windows-11-arm
+
+    env:
+      INSTANCE_ID: ${{ github.event.inputs.INSTANCE }}
+      SECRET_SHAHZAIB: ${{ secrets.SECRET_SHAHZAIB }}
+      NGROK_SHAHZAIB: ${{ secrets.NGROK_SHAHZAIB }}
+      REPO: ${{ github.repository }}
+      WORKFLOW_FILE: "enigmano-Win-11-128-Cores.yml"
+      DEPLOYMENT_ID: ${{ github.run_id }}
